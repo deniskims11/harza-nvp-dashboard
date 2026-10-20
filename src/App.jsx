@@ -20,7 +20,8 @@ export default function App() {
           </p>
         )}
         {err && <p style={{ color: "#b91c1c" }}>Could not load data: {err}</p>}
-        {m && <NvpLedger ads={m.ads} days={m.days} baselineNc={m.baseline.ncroas} roasLabel="ROAS" />}
+        {m && <NvpLedger ads={m.ads} days={m.days} baselineNc={m.baseline.ncroas} roasLabel="ROAS"
+          visitorNote="new ÷ (new + recurring) visitors (Moby)" />}
       </div>
     </div>
   );
