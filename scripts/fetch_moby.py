@@ -98,7 +98,7 @@ def main():
             # [dayIdx, spend, rev, orders, nc_rev, nc_orders, new_visitors, visitors, impressions, clicks]
             c["dd"].append([i, round(g("spend"), 2), round(g("revenue"), 2), g("orders"),
                             round(g("newCustomerRevenue"), 2), g("newCustomerOrders"), nv, nv + rv,
-                            g("impressions"), g("clicks")])
+                            g("impressions"), g("outboundClicks")])
 
     ads = []
     for c in creatives.values():
