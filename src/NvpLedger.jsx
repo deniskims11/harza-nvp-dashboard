@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import FunnelEvolution from "./FunnelEvolution.jsx";
 
 // NVP Bucket Ledger: every creative's spend in each period (day or week) is
 // bucketed by its New Visitor % in that period — NVP = new visitors ÷ unique
@@ -97,6 +98,7 @@ export default function NvpLedger({ ads, days, baselineNc = 0, roasLabel = "ROAS
     return { periods: list, totals: T };
   }, [ads, days, product, start, end, rows, last]);
 
+  const productAds = useMemo(() => (product === "All" ? ads : ads.filter(a => a.product === product)), [ads, product]);
   const ncColor = (v) => (v == null ? "#b0978f" : v >= baselineNc ? "#15803d" : "#b91c1c");
   const btn = (on) => ({
     padding: "5px 12px", border: "none", borderRadius: 5, cursor: "pointer", fontSize: 12, fontWeight: 600,
@@ -147,6 +149,8 @@ export default function NvpLedger({ ads, days, baselineNc = 0, roasLabel = "ROAS
             );
           })}
         </div>
+
+        <FunnelEvolution ads={productAds} days={days} buckets={BUCKETS} bucketOf={bucketOf} />
 
         <h3 style={{ fontSize: 14, fontWeight: 600, margin: "0 0 4px", color: "#3a2429" }}>{rows === "Week" ? "Weekly" : "Daily"} evolution</h3>
         <p style={{ fontSize: 11, color: "#b0978f", margin: "0 0 10px" }}>
